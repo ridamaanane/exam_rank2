@@ -57,12 +57,3 @@ exemple : `00100110`:
 Had function kat9leb bits:
 - Input: `00100110`
 - Output: `01100100`
-
--------------------------------------------------------
-![image](https://github.com/user-attachments/assets/af1e1d53-02bf-4c3f-9f1e-6e637980a564)
-
-3lach r kayna fdepart oktbha !!!
-
-![image](https://github.com/user-attachments/assets/9b87f4b7-9f3e-424d-837a-591f6866bf3e)
-
-
