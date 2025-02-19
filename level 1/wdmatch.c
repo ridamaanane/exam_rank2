@@ -20,7 +20,6 @@ int main(int ac, char **av)
 			{
 				i++;
 			}
-
 			j++;
 		}
 		if (i == ft_strlen(av[1]))

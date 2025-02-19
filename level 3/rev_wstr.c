@@ -5,11 +5,11 @@ int main(int ac, char **av)
     int i = 0;
     int j = 0;
 
-    while (av[1][j])
-        j++;
-    j--;
     if (ac == 2)
     {
+        while (av[1][j])
+            j++;
+        j--;
         while (j >= 0)
         {
             while (av[1][j] != ' ' && j >= 0)
