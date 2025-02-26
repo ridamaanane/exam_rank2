@@ -1,95 +1,56 @@
-int    ft_check(char *str, char c)
+#include <stdio.h>
+
+int    get_index(char c, int base)
 {
-    int    i;
-
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
-}
-
-int    ft_strlen(char *str)
-{
-    int    ln;
-
-    ln = 0;
-    while (str[ln] != '\0')
-    {
-        ln++;
-    }
-    return (ln);
-}
-
-int    ft_invalid(char *check)
-{
-    int    tol;
-    int    i;
-
-    tol = ft_strlen(check);
-    i = 0;
-    if (tol < 2)
-        return (0);
-    while (i < tol)
-    {
-        if (check[i] == '+' || check[i] == '-')
-            return (0);
-        if (ft_check(check + i + 1, check[i]))
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-int    ft_get_index(char *base, char c)
-{
-    int    i;
-
-    i = 0;
-    while (base[i] != '\0')
-    {
-        if (base[i] == c)
-            return (i);
-        i++;
-    }
+    if (c >= '0' && c <= '9')
+        return (c - '0');
+    if (c >= 'a' && c <= 'f' && base > 10)
+        return (c - 'a' + 10);
+    if (c >= 'A' && c <= 'F' && base > 10)
+        return (c - 'A' + 10);
     return (-1);
 }
 
-int    ft_atoi_base(char *str, char *base)
+int    ft_atoi_base(const char *str, int base)
 {
     int    i;
     int    sign;
-    int    res;
-    int    tol;
+    int    result;
     int    digit;
 
-    tol = ft_strlen(base);
-    if (!ft_invalid(base))
+    if (base < 2 || base > 16)
         return (0);
     i = 0;
-    res = 0;
     sign = 1;
+    result = 0;
     while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
         i++;
-    while (str[i] == '-' || str[i] == '+')
-        if (str[i++] == '-')
-            sign *= -1;
-    while (str[i] != '\0')
+    if (str[i] == '-' || str[i] == '+')
     {
-        digit = ft_get_index(base, str[i++]);
-        if (digit == -1)
-            break ;
-        res = res * tol + digit;
+        if (str[i] == '-')
+            sign = -1;
+        i++;
     }
-    return (sign * res);
+    while (str[i])
+    {
+        digit = get_index(str[i], base);
+        if (digit == -1 || digit >= base)
+            break ;
+        result = result * base + digit;
+        i++;
+    }
+    return (result * sign);
 }
-/*
+
 #include <stdio.h>
 
-int    main()
+int    main(void)
 {
-    printf("%d", ft_atoi_base("2371", "01234567"));
-}*/
+    printf("%d\n", ft_atoi_base("101", 2));        // 5
+    printf("%d\n", ft_atoi_base("-1A", 16));       // -26
+    printf("%d\n", ft_atoi_base("12fdb3", 16));    // 1243571
+    printf("%d\n", ft_atoi_base("123", 10));       // 123
+    printf("%d\n", ft_atoi_base("777", 8));        // 511
+    printf("%d\n", ft_atoi_base("1101", 2));       // 13
+    printf("%d\n", ft_atoi_base("Z23", 36));       // 0 (invalid base)
+}
