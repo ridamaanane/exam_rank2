@@ -18,11 +18,11 @@ int    ft_atoi_base(const char *str, int base)
     int    result;
     int    digit;
 
-    if (base < 2 || base > 16)
-        return (0);
     i = 0;
     sign = 1;
     result = 0;
+    if (base < 2 || base > 16)
+    return (0);
     while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
         i++;
     if (str[i] == '-' || str[i] == '+')
@@ -46,7 +46,7 @@ int    ft_atoi_base(const char *str, int base)
 
 int    main(void)
 {
-    printf("%d\n", ft_atoi_base("101", 2));        // 5
+    printf("%d\n", ft_atoi_base("2a", 16));        // 42
     printf("%d\n", ft_atoi_base("-1A", 16));       // -26
     printf("%d\n", ft_atoi_base("12fdb3", 16));    // 1243571
     printf("%d\n", ft_atoi_base("123", 10));       // 123

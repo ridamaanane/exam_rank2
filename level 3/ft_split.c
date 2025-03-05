@@ -78,6 +78,41 @@ char	**ft_split(char *s, char c)
 	return (result);
 }
 
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <unistd.h>
+
+
+// char **ft_split(char *s)
+// {
+//         char **array;
+//         int i, x;
+
+//         array = malloc(sizeof(char *) * 1024);
+//         i = 0;
+//         while (*s && *s == ' ')
+//                 s++;
+//         while (*s)
+//         {
+//                 array[i] = malloc(sizeof(char) *1000);
+//                 x = 0;
+//                 while (*s && *s != ' ')
+//                 {
+//                         array[i][x] = *s;
+//                         s++;
+//                         x++;
+//                 }
+//                 array[i][x] = '\0';
+//                 while (*s && *s == ' ')
+//                         s++;
+//                 i++;
+//         }
+//         array[i] = NULL;
+//         return (array);
+// }
+
+
 #include <stdio.h>
 
 int main()
@@ -88,3 +123,5 @@ int main()
 
 
 }
+
+
