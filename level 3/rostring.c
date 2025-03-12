@@ -1,42 +1,38 @@
 #include <unistd.h>
-#include <stdio.h>
-
-void    pp(char c)
-{
-    write(1, &c, 1);
-}
 
 int main(int ac, char **av)
 {
-	int i = 0;
-	int j = 0;
-    int toggle = 0;
-
-    while (av[1][i] && av[1][i] == ' ')
-        i++;
-    j = i;
-    while (av[1][i] && av[1][i] != ' ')
-        i++;
-    while (av[1][i])
+    int i = 0;
+    int j;
+    int found = 0;
+    if (ac > 1)
     {
-        if (av[1][i] == ' ' && toggle == 1)
+        while (av[1][i] == ' ' || av[1][i] == '\t')
+            i++;
+        j = i;
+        while ((av[1][i] != ' ' && av[1][i] != '\t')  && av[1][i])
+            i++;
+        while (av[1][i])
         {
-            toggle = 0;
-            pp(' ');
+            if ((av[1][i] == ' ' || av[1][i] == '\t') && found == 1)
+            {
+                write(1, " ", 1);
+                found = 0;
+            }
+            else if (av[1][i] != ' ' && av[1][i] != '\t')
+            {
+                found = 1;
+                write(1, &av[1][i], 1);
+            }
+            i++;
         }
-        else if (av[1][i] != ' ')
+        if (found == 1)
+            write(1, " ", 1);
+        while (av[1][j] && (av[1][j] != ' ' && av[1][i] != '\t'))
         {
-            pp(av[1][i]);
-            toggle = 1;
+            write(1, &av[1][j], 1);
+            j++;
         }
-        i++;
     }
-    if (toggle != 0)
-        pp(' ');
-    while (av[1][j] && av[1][j] != ' ')
-    {
-        pp(av[1][j]);
-        j++;
-    }
-    pp('\n');
+    write(1, "\n", 1);
 }

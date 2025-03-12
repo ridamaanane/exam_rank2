@@ -78,38 +78,38 @@ char	**ft_split(char *s, char c)
 	return (result);
 }
 
-
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <unistd.h>
-
-
-// char **ft_split(char *s)
+// char **ft_split(char *str)
 // {
-//         char **array;
-//         int i, x;
+//     int i, x;
+//     char **array;
+//     array = malloc(sizeof(char *) * 1024);
+//     if (!array)
+//         return (NULL);
+    
+//     while (*str && (*str == ' ' || *str == '\t' || *str == '\n'))
+//         str++;
+//     i = 0;
+//     while (*str)
+//     {
+//         array[i] = malloc(sizeof(char) * 1000);
+//         if (!array[i])
+//             return (NULL);
 
-//         array = malloc(sizeof(char *) * 1024);
-//         i = 0;
-//         while (*s && *s == ' ')
-//                 s++;
-//         while (*s)
+//         x = 0;
+//         while (*str && (*str != ' ' && *str != '\t' && *str != '\n'))
 //         {
-//                 array[i] = malloc(sizeof(char) *1000);
-//                 x = 0;
-//                 while (*s && *s != ' ')
-//                 {
-//                         array[i][x] = *s;
-//                         s++;
-//                         x++;
-//                 }
-//                 array[i][x] = '\0';
-//                 while (*s && *s == ' ')
-//                         s++;
-//                 i++;
+//             array[i][x] = *str;
+//             str++;
+//             x++;
 //         }
-//         array[i] = NULL;
-//         return (array);
+//         array[i][x] = '\0';
+//         while (*str && (*str == ' ' || *str == '\t' || *str == '\n'))
+//             str++;
+//         i++;
+//     }
+//     array[i] = NULL;
+//     return (array);
+
 // }
 
 
@@ -120,8 +120,6 @@ int main()
 		char **result = ft_split("rida maanane cava", ' ');
 		for (int i = 0; i < 3; i++)
 			printf("%s\n", result[i]);
-
-
 }
 
 
