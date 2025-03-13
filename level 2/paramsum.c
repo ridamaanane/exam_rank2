@@ -27,3 +27,9 @@ int main(int ac, char **av)
 		write (1, "\n", 1);
 	}
 }
+// int		main(int ac, char **av)
+// {
+// 		av = 0;
+// 		ft_putnbr(ac - 1);
+// 		write(1, "\n", 1);
+// }
