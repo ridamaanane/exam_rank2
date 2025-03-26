@@ -1,26 +1,25 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int main(int ac, char **av)
+int main(int argc , char **av)
 {
-
-        if (ac == 2)
+        int i = 2;
+        if (argc == 2)
         {
-                int prime = 2;
-                int n = atoi(av[1]);
+        	int n = atoi(av[1]);
                 if (n == 1)
-                        printf("1");
-                while (prime <= n)
+                        printf("1\n");
+                while(i <= n)
                 {
-                        if (n % prime == 0)
+                        if (n % i == 0)
                         {
-                                putnbr(prime);
-                                n = n / prime;
-                                if (n != 1)
+                                printf("%d", i);
+                                if (n != i)
                                         printf("*");
+                                n = n / i;
                         }
                         else
-                                prime++;
+                                i++;
                 }
         }
         printf("\n");

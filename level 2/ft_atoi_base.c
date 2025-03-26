@@ -48,7 +48,6 @@ int    main(void)
 {
     printf("%d\n", ft_atoi_base("2a", 16));        // 42
     printf("%d\n", ft_atoi_base("-1A", 16));       // -26
-    printf("%d\n", ft_atoi_base("12fdb3", 16));    // 1243571
     printf("%d\n", ft_atoi_base("123", 10));       // 123
     printf("%d\n", ft_atoi_base("777", 8));        // 511
     printf("%d\n", ft_atoi_base("1101", 2));       // 13

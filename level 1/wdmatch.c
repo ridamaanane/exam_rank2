@@ -17,9 +17,7 @@ int main(int ac, char **av)
 		while (av[1][i] && av[2][j])
 		{
 			if (av[1][i] == av[2][j])
-			{
 				i++;
-			}
 			j++;
 		}
 		if (i == ft_strlen(av[1]))

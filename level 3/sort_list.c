@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct s_list
@@ -6,31 +7,88 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-
-void	ft_swap(int *a, int *b)
+void swap(int *a, int *b)
 {
-	int	tmp = *a;
-	*a = *b;
-	*b = tmp;
+    int swap;
+
+    swap = *a;
+    *a = *b;
+    *b = swap;
 }
-t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 {
-    if (!lst)
-        return (NULL);
+    int sorted = 0;
 
-    t_list *tmp;
-
-    tmp = lst;
-    while (lst && lst->next)
+    while (!sorted)
     {
-        if (!cmp(lst->data, lst->next->data))
+        t_list *tmp = lst;
+        sorted = 1;
+        while (tmp && tmp->next)
         {
-            ft_swap(&lst->data, &lst->next->data);
-            lst = tmp; // Restart from the head
+            if (!cmp(tmp->data , tmp->next->data))
+            {
+                swap(&tmp->data , &tmp->next->data);
+                sorted = 0;
+            }
+            tmp = tmp->next;
         }
-        else
-            lst = lst->next;
     }
-    lst = tmp;
     return (lst);
+}
+int ascending(int a, int b)
+{
+	return (a <= b);
+}
+
+void print_list(t_list *head)
+{
+    while (head)
+    {
+        printf("[%d] ", head->data);
+        head = head->next;
+    }
+}
+
+int main()
+{
+    t_list *n1 = malloc(sizeof(t_list));
+    n1->next = NULL;
+    n1->data = 15;
+
+    t_list *n2 = malloc(sizeof(t_list));
+    n2->next = NULL;
+    n2->data = 2;
+
+    t_list *n3 = malloc(sizeof(t_list));
+    n3->next = NULL;
+    n3->data = 20;
+
+    t_list *n4 = malloc(sizeof(t_list));
+    n4->next = NULL;
+    n4->data = 5;
+
+    t_list *n5 = malloc(sizeof(t_list));
+    n5->next = NULL;
+    n5->data = 1;
+
+    t_list *n6 = malloc(sizeof(t_list));
+    n6->next = NULL;
+    n6->data = 6;
+
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n4->next = n5;
+    n5->next = n6;
+    n6->next = NULL;
+
+    print_list(n1);
+
+    printf("\n");
+
+    sort_list(n1, ascending);
+
+    print_list(n1);
+
 }
