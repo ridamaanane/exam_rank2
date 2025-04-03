@@ -11,7 +11,7 @@ void ft_putchar(char c)
 void print_hex(int n)
 {
     char arr[] = "0123456789abcdef";
-    if (n > 16)
+    if (n >= 16)
         print_hex(n / 16);
     ft_putchar(arr[n % 16]);
 }
